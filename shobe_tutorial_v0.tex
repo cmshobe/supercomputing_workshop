@@ -6,7 +6,13 @@
 \usepackage{graphicx}				% Use pdf, png, jpg, or eps§ with pdflatex; use eps in DVI mode
 								% TeX will automatically convert eps --> pdf in pdflatex		
 \usepackage{amssymb}
-
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=blue,
+}
 \title{Informal introduction to supercomputing}
 \author{Charlie Shobe}
 \date{\today}							% Activate to display a given date or no date
@@ -36,8 +42,36 @@ While keeping your models and driver files on a remote supercomputer should cert
 
 \section{Cautionary notes}
 \subsection{Don't run jobs on the head node}
-As discussed above, 
-\subsection{Don't use ``sudo''}
+As discussed above, the sole purpose of the head node is to take your requests for jobs to be run and pass those jobs to the rest of the nodes for the actual computation. Please never, \Large{ever,} \Huge{ever} \normalsize run a model on the compute node. It only has so much processing power, and if it's slowed down by a large computation it will not be able to do its job of parsing out jobs and collecting their output. This makes the CSDMS and IT folks very unhappy.\par
+What this comes down to in a practical setting is that you should never be typing something like \texttt{python run charlie-big-slow-model.py} into the command line when you're driving Beach. Because the head node is the node you're logged into by default, this would run the model on the head node. This is why users submit jobs through the Torque system using submission scripts. When a job is formally submitted to Torque, the head node knows not to run the job itself, but to pass it on to one of the compute nodes.
+\subsection{Don't use super user privileges}
+Beach uses a fairly user-trusting file system, in which you can install software packages to your working directory and do other things that aren't often allowed on shared computing resources. The downside of this is that it isn't terribly difficult to mess things up, not only for yourself but possibly for other users as well. What this comes down to is that it's a bad idea to try to use super user privileges (or ``sudo'' in Unix speak) (Fig.\ 1). I did this once and it resulted in a quick email from IT. 
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=3 in]{18f}
+    \caption{Don't give yourself super user privileges while driving Beach.}
+    \label{fig:spiderCat}
+\end{figure}
 
+\section{Getting set up, logged in, and oriented}
+\subsection{Getting an account}
+\subsection{Logging in}
+\subsection{Getting oriented}
+
+\section{Submitting and monitoring single jobs}
+\subsection{A test ``model''}
+\subsection{Writing a submission script}
+\subsection{Submitting and monitoring jobs with Torque}
+
+\section{Submitting and monitoring batch jobs}
+\subsection{Submission scripts for batch processing}
+\subsection{Submitting and monitoring batches of jobs}
+
+\section{Resources}
+\begin{itemize}
+\item \href{https://csdms.colorado.edu/wiki/HPCC_guidelines}{CSDMS HPCC Guidelines page}: Discusses logging in and copying files to and from Beach.
+\item \href{https://csdms.colorado.edu/wiki/HPCC_usage_rules}{CSDMS Torque Cheat Sheet}: Has examples of basic submission scripts and a basic guide to the most common Torque commands.
+\item \href{http://docs.adaptivecomputing.com/torque/4-0-2/help.htm}{Torque online documentation}: Has detailed documentation for all torque commands and workflows.
+\end{itemize}
 
 \end{document}  
