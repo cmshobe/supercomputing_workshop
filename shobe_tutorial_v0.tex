@@ -45,13 +45,7 @@ While keeping your models and driver files on a remote supercomputer should cert
 As discussed above, the sole purpose of the head node is to take your requests for jobs to be run and pass those jobs to the rest of the nodes for the actual computation. Please never, \Large{ever,} \Huge{ever} \normalsize run a model on the compute node. It only has so much processing power, and if it's slowed down by a large computation it will not be able to do its job of parsing out jobs and collecting their output. This makes the CSDMS and IT folks very unhappy.\par
 What this comes down to in a practical setting is that you should never be typing something like \texttt{python run charlie-big-slow-model.py} into the command line when you're driving Beach. Because the head node is the node you're logged into by default, this would run the model on the head node. This is why users submit jobs through the Torque system using submission scripts. When a job is formally submitted to Torque, the head node knows not to run the job itself, but to pass it on to one of the compute nodes.
 \subsection{Don't use super user privileges}
-Beach uses a fairly user-trusting file system, in which you can install software packages to your working directory and do other things that aren't often allowed on shared computing resources. The downside of this is that it isn't terribly difficult to mess things up, not only for yourself but possibly for other users as well. What this comes down to is that it's a bad idea to try to use super user privileges (or ``sudo'' in Unix speak) (Fig.\ 1). I did this once and it resulted in a quick email from IT. 
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=3 in]{18f}
-    \caption{Don't give yourself super user privileges while driving Beach.}
-    \label{fig:spiderCat}
-\end{figure}
+Beach uses a fairly user-trusting file system, in which you can install software packages to your working directory and do other things that aren't often allowed on shared computing resources. The downside of this is that it isn't terribly difficult to mess things up, not only for yourself but possibly for other users as well. What this comes down to is that it's a bad idea to try to use super user privileges (or ``sudo'' in Unix speak). I did this once and it resulted in a quick email from IT. 
 
 \section{Getting set up, logged in, and oriented}
 \subsection{Getting an account}
