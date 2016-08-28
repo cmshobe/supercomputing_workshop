@@ -1,0 +1,32 @@
+\documentclass[12pt, oneside]{article}   	% use "amsart" instead of "article" for AMSLaTeX format
+\usepackage{geometry}                		% See geometry.pdf to learn the layout options. There are lots.
+\geometry{letterpaper}                   		% ... or a4paper or a5paper or ... 
+%\geometry{landscape}                		% Activate for for rotated page geometry
+%\usepackage[parfill]{parskip}    		% Activate to begin paragraphs with an empty line rather than an indent
+\usepackage{graphicx}				% Use pdf, png, jpg, or eps§ with pdflatex; use eps in DVI mode
+								% TeX will automatically convert eps --> pdf in pdflatex		
+\usepackage{amssymb}
+
+\title{Informal introduction to supercomputing}
+\author{Charlie Shobe}
+\date{\today}							% Activate to display a given date or no date
+
+\begin{document}
+\maketitle
+
+\tableofcontents
+
+
+\section{Introduction}
+This is a short cheat sheet to help get readers up to speed on how to drive the CU-CSDMS HPCC, more informally called ``Beach.'' It assumes only very basic knowledge of terminal commands and the command line. Probably the things described here will be more difficult on a Windows OS than a Mac/Linux OS.
+\subsection{Structure of Beach}
+Beach is a collection of many ``nodes,'' or individual computers that are networked together. Most nodes are ``compute nodes,'' meaning that they are the nodes responsible for running your slow fancy model. The whole show is run by the ``head node,'' which is the node you are automatically working in when you log in to Beach. The head node is responsible for taking user job submissions and parsing them out to the different compute nodes to be run. To control the flow of jobs from users through the head node to different compute nodes and back again, Beach uses a job management system called Torque.
+\subsection{Why use a supercomputer?}
+Some supercomputers are blazing fast. Beach is not blazing fast. Each ``node,'' easily thought of 
+
+\section{Cautionary notes}
+\subsection{Don't run jobs on the head node}
+\subsection{Don't use ``sudo''}
+
+
+\end{document}  

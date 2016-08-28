@@ -1,0 +1,6 @@
+\contentsline {section}{\numberline {1}Introduction}{1}
+\contentsline {subsection}{\numberline {1.1}Structure of Beach}{1}
+\contentsline {subsection}{\numberline {1.2}Why use a supercomputer?}{2}
+\contentsline {section}{\numberline {2}Cautionary notes}{2}
+\contentsline {subsection}{\numberline {2.1}Don't run jobs on the head node}{2}
+\contentsline {subsection}{\numberline {2.2}Don't use ``sudo''}{2}
