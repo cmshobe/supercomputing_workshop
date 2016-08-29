@@ -49,18 +49,35 @@ Beach uses a fairly user-trusting file system, in which you can install software
 
 \section{Getting set up, logged in, and oriented}
 \subsection{Getting an account}
+To get an account, you need to become a member of CSDMS (free) then apply for an account through the CSDMS website. It's a really easy process, and it takes 3-5 days for your account to be approved.
 \subsection{Logging in}
+Logging in to Beach is really easy. From a terminal window, simply type \texttt{ssh username@beach.colorado.edu}. Assuming your user name is connected with an active account, it will then prompt you for your password. Once you put in your password, you'll be logged in to Beach.
 \subsection{Getting oriented}
+To find out where you are in Beach's file system, type \texttt{pwd}. By default, you will always start in your personal directory after logging in. The path is \texttt{~/home/username}. Generally you will not need to go \textit{higher} in Beach's file system than this, because all of your work should be contained in your named directory. Within your named directory, you are king of the castle. You can create directories, copy files to and from them, edit text files, and do any number of other normal computer things from the command line.
+\subsection{Copying files to and from Beach}
+Most of the work involved with using a supercomputer is file management. You need to be able to copy files into your named directory so that Beach can find them to run your models. To copy files, Beach users are required to use \texttt{scope} (secure copy) rather than \texttt{cp} (copy). I don't know what makes \texttt{scp} more secure; it just is what it is. To copy a file from your computer to Beach, you need to be in the relevant directory and then type \texttt{scp myfile.txt username@beach.colorado.edu:/home/username}. The general syntax, as you can probably tell, is \texttt{copy this thing from this place to that place}, and any directory path after the colon is telling your computer to copy the file(s) to that specific location on Beach. The structure is similar when copying files from Beach to your computer. This is especially relevant for retrieving model results. From the folder on your computer where you want the files copied to, typing \texttt{scp username@beach.colorado.edu:/home/username/myresults.dat .} will bring \texttt{myresults.dat} from Beach back to your machine. The \texttt{.} means that the destination is the current folder; you could also type the full path of wherever you want the file to go. \texttt{scp} also accepts multiple files in the same command, and full directories can be copied using \texttt{scp -r} (r for ``recursive'').
 
 \section{Submitting and monitoring single jobs}
 \subsection{A test ``model''}
+For this tutorial, we will use a very simple python ``model'' so that we can have confidence that no errors we see are due to errors in our model. Our ``model'' will read input parameters from a text file, do some basic calculations, and then write some output to a text file. In this case, it will read in a set of numbers and write out the average and standard deviation. With typical academic creativity, we will name it ``model.py.'' It is important to note that the files you are running do \textit{not} need to be python files. Beach supports C/C++, MATLAB, FORTRAN, and probably other languages that I've never even heard of.
 \subsection{Writing a submission script}
+Let's suppose we want to do a single model run on Beach. Remember that it is not likely to be faster than on your personal machine, but the other benefits stated above still apply. The simplest and most reproducible way to talk to the Torque job management system is to write a shell script that tells it how to run your model. The simplest possible script we could write to run our model would look like this:\par
+\vspace{.2in}
+\texttt{\#!/bin/sh}\par
+\texttt{cd /home/chsh5846/folder-holding-model-and-inputs}\par
+\texttt{python model.py}\par
+\vspace{.2in}
+All that this script does is 1) tell Beach this is a shell script, 2) change directory to where our model and input data lives, and 3) run the model. 
 \subsection{Submitting and monitoring jobs with Torque}
-
+Once we write this shell script, save it (say, \texttt{script.sh}) and copy it to our working directory, ``submitting'' the job to Beach is easy:\par
+\vspace{.2in}
+\texttt{qsub script.sh}
+\vspace{.2in}
+By using the \texttt{qsub} submission command instead of simply running the shell script, we've ensured that the job will be distributed to a compute node rather than run on the head node. By default, any outputs from the model will be written to the same folder that the model and input data are in. In the case of our short ``model,'' the execution time is effectively instantaneous. However, there are a couple of good Torque commands to know if you submitted a job that takes longer to run. \texttt{qstat} will bring up the queue, which is the full list of all jobs being run on Beach and those queued up but not yet running. You'll notice that every job has an ID number in the leftmost column. This ID is useful for the other commonly used Torque command, \texttt{qdel}. As you might imagine, \texttt{qdel \#\#\#\#\#} will delete the job with the number that was provided as an argument. There are many other ways in which these commands can be used, and many other Torque commands, but \texttt{qsub}, \texttt{stat}, and \texttt{qdel} are by far the most common.
 \section{Submitting and monitoring batch jobs}
+The real advantages of supercomputing become apparent when you submit many jobs to be run concurrently. While this could be done by changing the parameters (model name, input file, whatever) in your shell script, it is far easier to submit a script that will allow for ``batch processing,'' meaning that a single shell script submits multiple jobs that are run concurrently on different compute nodes.
 \subsection{Submission scripts for batch processing}
-\subsection{Submitting and monitoring batches of jobs}
-
+Submission scripts for batch processing are significantly more complicated than for a single model realization. This is because the different model driver files and input files must be kept in separate folders so that the output of older runs is not overwritten by the output of newer runs. I'm happy to share the batch scripts that I use, and examples are also available on the CSDMS wiki pages. 
 \section{Resources}
 \begin{itemize}
 \item \href{https://csdms.colorado.edu/wiki/HPCC_guidelines}{CSDMS HPCC Guidelines page}: Discusses logging in and copying files to and from Beach.

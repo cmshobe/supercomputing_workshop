@@ -9,11 +9,11 @@
 \BOOKMARK [2][-]{subsection.3.1}{Getting an account}{section.3}% 9
 \BOOKMARK [2][-]{subsection.3.2}{Logging in}{section.3}% 10
 \BOOKMARK [2][-]{subsection.3.3}{Getting oriented}{section.3}% 11
-\BOOKMARK [1][-]{section.4}{Submitting and monitoring single jobs}{}% 12
-\BOOKMARK [2][-]{subsection.4.1}{A test ``model''}{section.4}% 13
-\BOOKMARK [2][-]{subsection.4.2}{Writing a submission script}{section.4}% 14
-\BOOKMARK [2][-]{subsection.4.3}{Submitting and monitoring jobs with Torque}{section.4}% 15
-\BOOKMARK [1][-]{section.5}{Submitting and monitoring batch jobs}{}% 16
-\BOOKMARK [2][-]{subsection.5.1}{Submission scripts for batch processing}{section.5}% 17
-\BOOKMARK [2][-]{subsection.5.2}{Submitting and monitoring batches of jobs}{section.5}% 18
+\BOOKMARK [2][-]{subsection.3.4}{Copying files to and from Beach}{section.3}% 12
+\BOOKMARK [1][-]{section.4}{Submitting and monitoring single jobs}{}% 13
+\BOOKMARK [2][-]{subsection.4.1}{A test ``model''}{section.4}% 14
+\BOOKMARK [2][-]{subsection.4.2}{Writing a submission script}{section.4}% 15
+\BOOKMARK [2][-]{subsection.4.3}{Submitting and monitoring jobs with Torque}{section.4}% 16
+\BOOKMARK [1][-]{section.5}{Submitting and monitoring batch jobs}{}% 17
+\BOOKMARK [2][-]{subsection.5.1}{Submission scripts for batch processing}{section.5}% 18
 \BOOKMARK [1][-]{section.6}{Resources}{}% 19
